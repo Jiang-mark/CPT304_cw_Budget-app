@@ -30,9 +30,9 @@ let balance = 0,
   outcome = 0;
 const DELETE = "delete",
   EDIT = "edit";
-
+const AMOUNT_PATTERN = /^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/;
 // LOOK IF THERE IS DATA IN LOCAL STORAGE
-ENTRY_LIST = JSON.parse(localStorage.getItem("entry_list")) || [];
+ENTRY_LIST = getStoredEntries();
 updateUI();
 
 //EVENT LISTENERS
@@ -57,13 +57,16 @@ allBtn.addEventListener("click", function () {
 
 addExpense.addEventListener("click", function () {
   // CHECK IF ONE OF THE INPUT IS EMPTY => EXIT
-  if (!expenseTitle.value || !expenseAmount.value) return;
+  if (!expenseTitle.value) return;
+
+  const amount = getValidAmount(expenseAmount);
+  if (amount === null) return;
 
   // ADD INPUTs TO ENTRY_LIST
   let expense = {
     type: "expense",
     title: expenseTitle.value,
-    amount: +expenseAmount.value,
+    amount,
   };
   ENTRY_LIST.push(expense);
 
@@ -73,13 +76,16 @@ addExpense.addEventListener("click", function () {
 
 addIncome.addEventListener("click", function () {
   // CHECK IF ONE OF THE INPUT IS EMPTY => EXIT
-  if (!incomeTitle.value || !incomeAmount.value) return;
+  if (!incomeTitle.value) return;
+
+  const amount = getValidAmount(incomeAmount);
+  if (amount === null) return;
 
   // ADD INPUTs TO ENTRY_LIST
   let income = {
     type: "income",
     title: incomeTitle.value,
-    amount: +incomeAmount.value,
+    amount,
   };
   ENTRY_LIST.push(income);
 
@@ -129,9 +135,9 @@ function updateUI() {
   let sign = income >= outcome ? "$" : "-$";
 
   //UPDATE UI
-  balanceEl.innerHTML = `<small>${sign}</small>${balance}`;
-  outcomeTotalEl.innerHTML = `<small>$</small>${outcome}`;
-  incomeTotalEl.innerHTML = `<small>$</small>${income}`;
+  balanceEl.innerHTML = `<small>${sign}</small>${formatAmount(balance)}`;
+  outcomeTotalEl.innerHTML = `<small>$</small>${formatAmount(outcome)}`;
+  incomeTotalEl.innerHTML = `<small>$</small>${formatAmount(income)}`;
 
   clearElement([expenseList, incomeList, allList]);
 
@@ -149,7 +155,7 @@ function updateUI() {
 
 function showEntry(list, type, title, amount, id) {
   const entry = `<li id="${id}" class="${type}">
-                    <div class="entry">${title} : $${amount}</div>
+                    <div class="entry">${title} : $${formatAmount(amount)}</div>
                     <div id="edit"></div>
                     <div id="delete"></div>
                   </li>`;
@@ -164,21 +170,73 @@ function clearElement(elements) {
 }
 
 function calculateTotal(type, list) {
-  let sum = 0;
+  let totalInCents = 0;
   list.forEach((entry) => {
     if (entry.type == type) {
-      sum += entry.amount;
+      totalInCents += Math.round(entry.amount * 100);
     }
   });
-  return sum;
+  return totalInCents / 100;
 }
 
 function calculateBalance(income, outcome) {
   return income - outcome;
 }
+
+function getValidAmount(amountInput) {
+  const rawAmount = amountInput.value.trim();
+  const amount = Number(rawAmount);
+
+  if (!isValidAmount(rawAmount)) {
+    amountInput.setCustomValidity(
+      "Please enter a positive amount with up to two decimal places."
+    );
+    amountInput.reportValidity();
+    return null;
+  }
+
+  amountInput.setCustomValidity("");
+  return Number(amount.toFixed(2));
+}
+
+function getStoredEntries() {
+  let storedEntries = [];
+
+  try {
+    storedEntries = JSON.parse(localStorage.getItem("entry_list")) || [];
+  } catch (error) {
+    storedEntries = [];
+  }
+
+  if (!Array.isArray(storedEntries)) {
+    return [];
+  }
+
+  return storedEntries.filter((entry) => {
+    return (
+      entry &&
+      (entry.type == "income" || entry.type == "expense") &&
+      typeof entry.title == "string" &&
+      isValidAmount(String(entry.amount))
+    );
+  });
+}
+
+function isValidAmount(value) {
+  const rawAmount = value.trim();
+  const amount = Number(rawAmount);
+
+  return AMOUNT_PATTERN.test(rawAmount) && Number.isFinite(amount) && amount > 0;
+}
+
+function formatAmount(amount) {
+  return Number(amount).toFixed(2);
+}
+
 function clearInput(inputs) {
   inputs.forEach((input) => {
     input.value = "";
+    input.setCustomValidity("");
   });
 }
 
