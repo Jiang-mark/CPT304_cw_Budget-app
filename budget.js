@@ -150,8 +150,8 @@ function updateUI() {
 function showEntry(list, type, title, amount, id) {
   const entry = `<li id="${id}" class="${type}">
                     <div class="entry">${title} : $${amount}</div>
-                    <div id="edit"></div>
-                    <div id="delete"></div>
+                    <button id="edit" aria-label="Edit this entry"></button>
+                    <button id="delete" aria-label="Delete this entry"></button>
                   </li>`;
   const position = "afterbegin";
   list.insertAdjacentHTML(position, entry);
