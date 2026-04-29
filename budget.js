@@ -97,6 +97,7 @@ addIncome.addEventListener("click", function () {
 incomeList.addEventListener("click", deleteOrEdit);
 expenseList.addEventListener("click", deleteOrEdit);
 allList.addEventListener("click", deleteOrEdit);
+window.addEventListener("languagechange", updateUI);
 
 // HELEPER FUNCS
 function deleteOrEdit(event) {
@@ -166,12 +167,12 @@ function showEntry(list, type, title, amount, id) {
   const editDiv = document.createElement("button");
   editDiv.id = "edit";
   editDiv.type = "button";
-  editDiv.setAttribute("aria-label", "Edit this entry");
+  editDiv.setAttribute("aria-label", translate("editEntry"));
 
   const deleteDiv = document.createElement("button");
   deleteDiv.id = "delete";
   deleteDiv.type = "button";
-  deleteDiv.setAttribute("aria-label", "Delete this entry");
+  deleteDiv.setAttribute("aria-label", translate("deleteEntry"));
 
   li.appendChild(entryDiv);
   li.appendChild(editDiv);
@@ -205,9 +206,7 @@ function getValidAmount(amountInput) {
   const amount = Number(rawAmount);
 
   if (!isValidAmount(rawAmount)) {
-    amountInput.setCustomValidity(
-      "Please enter a positive amount with up to two decimal places."
-    );
+    amountInput.setCustomValidity(translate("amountValidationMessage"));
     amountInput.reportValidity();
     return null;
   }
@@ -248,6 +247,10 @@ function isValidAmount(value) {
 
 function formatAmount(amount) {
   return Number(amount).toFixed(2);
+}
+
+function translate(key) {
+  return window.i18n ? window.i18n.t(key) : key;
 }
 
 function clearInput(inputs) {

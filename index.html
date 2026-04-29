@@ -10,44 +10,52 @@
   <body>
     <div class="budget-container">
       <div class="app-title">
-        <a href="">Budget<b>App</b></a>
+        <a href="index.html">Budget<b>App</b></a>
+        <div class="app-actions" aria-label="Application controls">
+          <div class="language-switch" aria-label="Language switch">
+            <button class="language-option" type="button" data-lang-option="en">EN</button>
+            <button class="language-option" type="button" data-lang-option="zh">中文</button>
+          </div>
+          <a class="policy-link" href="privacy.html" data-i18n="privacyLink">Privacy Policy</a>
+        </div>
       </div>
       <div class="budget-header">
         <div class="balance">
-          <div class="title">Balance</div>
+          <div class="title" data-i18n="balance">Balance</div>
           <div class="value"><small>$</small>0</div>
         </div>
         <div class="account">
           <div class="income">
-            <div class="title">Income</div>
+            <div class="title" data-i18n="income">Income</div>
             <div class="income-total"><small>$</small>0</div>
           </div>
           <div class="chart"></div>
           <div class="outcome">
-            <div class="title">Outcome</div>
+            <div class="title" data-i18n="outcome">Outcome</div>
             <div class="outcome-total"><small>$</small>0</div>
           </div>
         </div>
       </div>
       <div class="budget-dashboard">
-        <div class="dash-title">Dashboard</div>
+        <div class="dash-title" data-i18n="dashboard">Dashboard</div>
         <div class="toggle">
-          <button class="first-tab" type="button">Expenses</button>
-          <button class="second-tab" type="button">Income</button>
-          <button class="third-tab focus" type="button">All</button>
+          <button class="first-tab" type="button" data-i18n="expenses">Expenses</button>
+          <button class="second-tab" type="button" data-i18n="income">Income</button>
+          <button class="third-tab focus" type="button" data-i18n="all">All</button>
         </div>
         <div class="hide" id="expense">
           <ul class="list"></ul>
           <div class="input">
-            <label for="expense-title-input" class="sr-only">Expense Title</label>
+            <label for="expense-title-input" class="sr-only" data-i18n="expenseTitleLabel">Expense Title</label>
             <input
               type="text"
               id="expense-title-input"
               name="title"
               placeholder="title"
+              data-i18n-placeholder="titlePlaceholder"
             />
 
-            <label for="expense-amount-input" class="sr-only">Expense Amount</label>
+            <label for="expense-amount-input" class="sr-only" data-i18n="expenseAmountLabel">Expense Amount</label>
             <input
               type="number"
               id="expense-amount-input"
@@ -56,21 +64,23 @@
               step="0.01"
               inputmode="decimal"
               placeholder="$0"
+              data-i18n-placeholder="amountPlaceholder"
             />
-            <button class="add-expense" type="button" aria-label="Add expense"><img src="icon/plus.png" alt="+" /></button>
+            <button class="add-expense" type="button" aria-label="Add expense" data-i18n-aria-label="addExpense"><img src="icon/plus.png" alt="+" /></button>
           </div>
         </div>
         <div class="hide" id="income">
           <ul class="list"></ul>
           <div class="input">
-            <label for="income-title-input" class="sr-only">Income Title</label>
+            <label for="income-title-input" class="sr-only" data-i18n="incomeTitleLabel">Income Title</label>
             <input
               type="text"
               id="income-title-input"
               name="title"
               placeholder="title"
+              data-i18n-placeholder="titlePlaceholder"
             />
-            <label for="income-amount-input" class="sr-only">Income Amount</label>
+            <label for="income-amount-input" class="sr-only" data-i18n="incomeAmountLabel">Income Amount</label>
             <input
               type="number"
               id="income-amount-input"
@@ -79,8 +89,9 @@
               step="0.01"
               inputmode="decimal"
               placeholder="$0"
+              data-i18n-placeholder="amountPlaceholder"
             />
-            <button class="add-income" type="button" aria-label="Add income"><img src="icon/plus.png" alt="+" /></button>
+            <button class="add-income" type="button" aria-label="Add income" data-i18n-aria-label="addIncome"><img src="icon/plus.png" alt="+" /></button>
           </div>
         </div>
         <div id="all">
@@ -88,6 +99,19 @@
         </div>
       </div>
     </div>
+    <section class="cookie-banner hide" data-cookie-banner aria-label="Cookie notice">
+      <div>
+        <h2 data-i18n="cookieTitle">Cookie Notice</h2>
+        <p data-i18n="cookieMessage">
+          We use local storage to remember your budget entries, language preference, and cookie choice.
+        </p>
+      </div>
+      <div class="cookie-actions">
+        <a href="privacy.html" data-i18n="privacyLink">Privacy Policy</a>
+        <button type="button" data-cookie-accept data-i18n="acceptCookies">Accept</button>
+      </div>
+    </section>
+    <script src="./i18n.js"></script>
     <script src="./chart.js"></script>
     <script src="./budget.js"></script>
   </body>

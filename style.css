@@ -75,6 +75,11 @@ input[type="number"] {
 
 .budget-container .app-title {
   padding: 1.25rem var(--section-padding) 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+  flex-wrap: wrap;
 }
 
 .budget-container .app-title a {
@@ -83,6 +88,43 @@ input[type="number"] {
 
 .budget-container .app-title a b {
   font-family: "Gilroy Bold";
+}
+
+.app-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.language-switch {
+  display: inline-flex;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.language-option {
+  min-height: 1.8rem;
+  padding: 0 0.65rem;
+  border: 0;
+  background-color: transparent;
+  color: rgba(255, 255, 255, 0.72);
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+.language-option.active {
+  background-color: #fff;
+  color: #2a0355;
+}
+
+.policy-link {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.85rem;
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
 }
 
 .budget-header {
@@ -200,12 +242,14 @@ input[type="number"] {
 .third-tab {
   cursor: pointer;
   font-size: 1.1em;
-  color: #1a0034;
+  color: #9f95ad;
   font-family: "Gilroy Bold";
-  opacity: 0.7;
+  font-weight: 700;
+  opacity: 1;
 }
 
 .focus {
+  color: #1a0034 !important;
   opacity: 1 !important;
 }
 
@@ -503,7 +547,145 @@ button#delete {
 }
 
 
-button:focus {
+button:focus-visible {
   outline: 2px solid #007bff;
   border-radius: 4px;
+}
+
+.toggle button {
+  color: #9f95ad;
+  font-family: "Gilroy Bold";
+  font-size: 1.1em;
+  font-weight: 700;
+  opacity: 1;
+}
+
+.toggle button.focus {
+  color: #1a0034;
+  font-family: "Gilroy Bold";
+  font-weight: 700;
+  opacity: 1;
+}
+
+.toggle button:focus-visible {
+  outline: none;
+  text-decoration: underline;
+  text-underline-offset: 0.25rem;
+}
+
+.cookie-banner {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 20;
+  width: min(calc(100% - 2rem), 720px);
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid rgba(26, 0, 52, 0.14);
+  border-radius: 12px;
+  background-color: #fff;
+  color: #1a0034;
+  box-shadow: 0 18px 50px rgba(14, 7, 29, 0.22);
+}
+
+.cookie-banner h2 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-family: "Gilroy Bold";
+}
+
+.cookie-banner p {
+  margin: 0;
+  line-height: 1.45;
+}
+
+.cookie-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 0 0 auto;
+}
+
+.cookie-actions a {
+  color: #2a0355;
+  text-decoration: underline;
+  text-underline-offset: 0.15rem;
+}
+
+.cookie-actions button {
+  min-height: 2.5rem;
+  padding: 0 1rem;
+  border: 0;
+  border-radius: 999px;
+  background-color: #2a0355;
+  color: #fff;
+  cursor: pointer;
+  font-family: "Gilroy Bold";
+}
+
+.privacy-page {
+  width: min(100%, 820px);
+  min-height: calc(100dvh - (var(--page-padding) * 2));
+  margin: 0 auto;
+  border-radius: clamp(1.25rem, 4vw, 2rem);
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.privacy-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1.25rem var(--section-padding);
+  background-color: #2a0355;
+}
+
+.privacy-header > a {
+  color: #fff;
+}
+
+.privacy-header > a b {
+  font-family: "Gilroy Bold";
+}
+
+.privacy-content {
+  padding: clamp(1.5rem, 5vw, 2.5rem);
+  color: #1a0034;
+}
+
+.privacy-content h1,
+.privacy-content h2 {
+  margin: 0;
+  font-family: "Gilroy Bold";
+}
+
+.privacy-content h1 {
+  font-size: clamp(2rem, 7vw, 3rem);
+}
+
+.privacy-content h2 {
+  margin-top: 1.5rem;
+  font-size: 1.15rem;
+}
+
+.privacy-content p {
+  margin: 0.75rem 0 0;
+  line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+  .cookie-banner {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .cookie-actions {
+    justify-content: space-between;
+  }
 }

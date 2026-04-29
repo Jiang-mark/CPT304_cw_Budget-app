@@ -3,7 +3,7 @@ const chartEl = document.querySelector(".chart");
 
 // CREATE CANVAS ELEMENT
 const canvas = document.createElement("canvas");
-canvas.setAttribute("aria-label", "Income and expense chart");
+setChartLabel();
 
 chartEl.appendChild(canvas);
 
@@ -90,4 +90,11 @@ if (typeof ResizeObserver !== "undefined") {
   chartResizeObserver.observe(chartEl);
 } else {
   window.addEventListener("resize", resizeCanvas);
+}
+
+window.addEventListener("languagechange", setChartLabel);
+
+function setChartLabel() {
+  const label = window.i18n ? window.i18n.t("chartLabel") : "Income and expense chart";
+  canvas.setAttribute("aria-label", label);
 }
