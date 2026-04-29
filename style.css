@@ -148,7 +148,7 @@ input[type="number"] {
 
 .budget-header .account .income .title {
   color: #fff;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 .budget-header .account .income .income-total {
@@ -158,11 +158,11 @@ input[type="number"] {
 
 .budget-header .account .outcome .title {
   color: #fff;
-  opacity: 0.5;
+  opacity: 0.8;
 }
 
 .budget-header .account .outcome .outcome-total {
-  color: #f0624d;
+  color: #c1452b;
   font-family: "Gilroy Bold";
 }
 
@@ -202,7 +202,7 @@ input[type="number"] {
   font-size: 1.1em;
   color: #1a0034;
   font-family: "Gilroy Bold";
-  opacity: 0.4;
+  opacity: 0.7;
 }
 
 .focus {
@@ -276,7 +276,7 @@ input[type="number"] {
 }
 
 .budget-dashboard #all ul.list li.expense {
-  color: #f0624d;
+  color: #c1452b;
 }
 
 .budget-dashboard #all ul.list li #edit {
@@ -487,23 +487,23 @@ input[type="number"] {
   border-width: 0;
 }
 
-.toggle button, 
-button.add-expense, 
+.toggle button,
+button.add-expense,
 button.add-income,
-button#edit, 
+button#edit,
 button#delete {
-    background: none;
-    border: none;
-    padding: 0;
-    cursor: pointer;
-    font-family: inherit;
-    font-size: inherit;
-    color: inherit;
-    outline: none;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  outline: none;
 }
 
 
 button:focus {
-    outline: 2px solid #007bff;
-    border-radius: 4px;
+  outline: 2px solid #007bff;
+  border-radius: 4px;
 }
