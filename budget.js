@@ -31,7 +31,9 @@ let balance = 0,
 const DELETE = "delete",
   EDIT = "edit";
 const AMOUNT_PATTERN = /^(?:0|[1-9]\d*)(?:\.\d{1,2})?$/;
+
 // LOOK IF THERE IS DATA IN LOCAL STORAGE
+// ENTRY_LIST = JSON.parse(localStorage.getItem("entry_list")) || [];
 ENTRY_LIST = getStoredEntries();
 updateUI();
 
@@ -57,6 +59,7 @@ allBtn.addEventListener("click", function () {
 
 addExpense.addEventListener("click", function () {
   // CHECK IF ONE OF THE INPUT IS EMPTY => EXIT
+  // if (!expenseTitle.value || !expenseAmount.value) return;
   if (!expenseTitle.value) return;
 
   const amount = getValidAmount(expenseAmount);
@@ -66,6 +69,7 @@ addExpense.addEventListener("click", function () {
   let expense = {
     type: "expense",
     title: expenseTitle.value,
+    // amount: +expenseAmount.value,
     amount,
   };
   ENTRY_LIST.push(expense);
@@ -76,6 +80,7 @@ addExpense.addEventListener("click", function () {
 
 addIncome.addEventListener("click", function () {
   // CHECK IF ONE OF THE INPUT IS EMPTY => EXIT
+  // if (!incomeTitle.value || !incomeAmount.value) return;
   if (!incomeTitle.value) return;
 
   const amount = getValidAmount(incomeAmount);
@@ -85,6 +90,7 @@ addIncome.addEventListener("click", function () {
   let income = {
     type: "income",
     title: incomeTitle.value,
+    // amount: +expenseAmount.value,
     amount,
   };
   ENTRY_LIST.push(income);
@@ -135,6 +141,9 @@ function updateUI() {
   let sign = income >= outcome ? "$" : "-$";
 
   //UPDATE UI
+  // balanceEl.innerHTML = `<small>${sign}</small>${balance}`;
+  // outcomeTotalEl.innerHTML = `<small>$</small>${outcome}`;
+  // incomeTotalEl.innerHTML = `<small>$</small>${income}`;
   balanceEl.innerHTML = `<small>${sign}</small>${formatAmount(balance)}`;
   outcomeTotalEl.innerHTML = `<small>$</small>${formatAmount(outcome)}`;
   incomeTotalEl.innerHTML = `<small>$</small>${formatAmount(income)}`;
@@ -170,12 +179,15 @@ function clearElement(elements) {
 }
 
 function calculateTotal(type, list) {
+  // let sum = 0;
   let totalInCents = 0;
   list.forEach((entry) => {
     if (entry.type == type) {
+      // sum += entry.amount;
       totalInCents += Math.round(entry.amount * 100);
     }
   });
+  // return sum;
   return totalInCents / 100;
 }
 
