@@ -1,48 +1,47 @@
-# Budget-App-JavaScript
+# Budget App Enhancement
 
-Welcome to the Budget App! This project is the result of following a comprehensive YouTube tutorial that guides you through building a budget management application from scratch. With this app, you can efficiently track your income, expenses, and overall budget, gaining better control of your financial situation.
+This repository contains an enhanced version of a small JavaScript budget tracking application for CPT304 Coursework 1. The app allows users to record income and expense entries, view totals, and track the current balance in the browser.
 
-## Demo
-You can check out the live demo of the Budget App here.
-**Online Demo of Project :**
+## Source Project
 
-<a href="https://smircodes.github.io/Budget-app/" title="Budget-App">Link to Budget App</a>
+The original source code was based on the open-source Budget App project listed for the coursework:
 
-## Features
+- Original project list item: Personal Budget App
+- Repository: https://github.com/sptin2002/Budget-app
+- Tutorial credit in the original project: [aaramiss](https://samiraatech.github.io/Budget-app/)
 
-- Income and Expense Tracking: The Budget App allows you to enter your sources of income and expenses, categorizing them for better organization.
+This repository is a coursework fork/enhancement of that original project. The purpose of this version is to improve the original app against identified software deficiencies and required baseline standards.
 
-- Budget Calculation: Based on the provided income and expenses, the app calculates your budget by subtracting expenses from income, giving you a clear overview of your financial status.
+## Main Enhancements
 
-- Monthly Reports: Get a comprehensive monthly report that summarizes your income, expenses, and the resulting budget. This helps you understand your spending patterns over time.
-
-- Simple and Intuitive Interface: The app boasts a user-friendly interface, making it easy for anyone to navigate and use, even if you have little to no prior experience with budgeting applications.
+- Input validation: Income and expense amounts must be positive numeric values with up to two decimal places.
+- DOM XSS prevention: User-entered titles are rendered safely as text instead of being inserted as raw HTML.
+- Accessibility improvements: Interactive controls use semantic buttons, form fields have labels, and icon controls include accessible names.
+- Responsive layout: The app layout and chart sizing adapt better across mobile and desktop screen sizes.
+- Internationalization: The interface supports English and Chinese through a language toggle.
+- Legal compliance: A cookie banner and a dedicated Privacy Policy page have been added.
 
 ## Usage
+
 1. Clone the repository or download the ZIP file.
 
 1. Open the project in your preferred code editor.
 
-1. Launch the index.html file in your browser to run the Budget App locally.
+1. Launch the `index.html` file in your browser to run the Budget App locally.
 
 1. Start by adding your income and expenses to track your budget. The app will automatically calculate your available budget.
 
-1. Monitor your budget regularly and adjust your spending to achieve your financial goals.
+1. Use the language toggle to switch between English and Chinese if needed.
+
+1. Open `privacy.html` or use the Privacy Policy link in the app to view the privacy policy page.
 
 ## Technologies Used
-The Budget App was built using the following technologies and tools:
 
 - HTML5
 - CSS3
 - JavaScript
+- Browser localStorage
 
-## Credits
-The Budget App tutorial was created by [aaramiss](https://samiraatech.github.io/Budget-app/).
+## Notes
 
-## License
-The Budget App is released under the MIT License. You are free to use, modify, and distribute this project for personal and commercial purposes.
-
-## Feedback and Support
-If you have any questions, suggestions, or issues with the Budget App, feel free to reach out by creating an issue in the [GitHub repository]([url](https://github.com/aaramiss/Budget-app/issues)). We welcome any feedback to improve the app and make it even more useful for managing personal finances.
-
-Happy budgeting!
+This app stores budget entries, language preference, and cookie acknowledgement in the user's browser localStorage. It does not send budget data to a server.
