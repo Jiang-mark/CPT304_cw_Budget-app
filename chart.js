@@ -83,6 +83,9 @@ function updateChart(income, outcome) {
   renderChart();
 }
 
+window.updateChart = updateChart;
+globalThis.updateChart = updateChart;
+
 resizeCanvas();
 
 if (typeof ResizeObserver !== "undefined") {
